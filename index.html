@@ -172,9 +172,25 @@
     .pub-item a { color: #3a3a3a; }
     .pub-item strong { font-weight: bold; }
 
+    .lang-switcher {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 12px;
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 6px 14px;
+      border-radius: 2px;
+      text-decoration: none;
+      color: #555;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .lang-switcher:hover { color: #1a1a1a; border-color: #aaa; }
+
     @media print {
       body { background: #fff; padding: 0; }
       .page { box-shadow: none; max-width: 100%; }
+      .lang-switcher { display: none; }
     }
 
     @media (max-width: 640px) {
@@ -186,6 +202,8 @@
   </style>
 </head>
 <body>
+<a class="lang-switcher" href="ru.html">RU</a>
+
 <div class="page">
 
   <!-- HEADER -->
