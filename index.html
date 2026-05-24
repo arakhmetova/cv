@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aigul Rakhmetova — BI Engineer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #f5f4f0;
+      color: #1a1a1a;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #fff;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      grid-template-rows: auto 1fr;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+    }
+
+    /* ── HEADER ── */
+    .header {
+      grid-column: 1 / -1;
+      padding: 40px 40px 32px;
+      border-bottom: 1px solid #e8e6e0;
+      display: flex;
+      align-items: flex-end;
+      gap: 32px;
+    }
+    .header-name h1 {
+      font-size: 32px;
+      font-weight: normal;
+      letter-spacing: 0.5px;
+      line-height: 1.1;
+    }
+    .header-name .title {
+      font-size: 14px;
+      color: #777;
+      margin-top: 6px;
+      font-style: italic;
+      letter-spacing: 0.3px;
+    }
+    .header-summary {
+      flex: 1;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #444;
+      border-left: 1px solid #e0ddd6;
+      padding-left: 32px;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      padding: 32px 28px;
+      background: #faf9f6;
+      border-right: 1px solid #e8e6e0;
+    }
+
+    .sidebar-section { margin-bottom: 28px; }
+    .sidebar-section:last-child { margin-bottom: 0; }
+
+    .sidebar h2 {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #aaa;
+      font-weight: normal;
+      margin-bottom: 12px;
+    }
+
+    .contact-item {
+      font-size: 12.5px;
+      margin-bottom: 7px;
+      color: #444;
+      line-height: 1.4;
+    }
+    .contact-item a {
+      color: #3a3a3a;
+      text-decoration: none;
+      border-bottom: 1px solid #ccc;
+    }
+    .contact-item a:hover { border-color: #666; }
+
+    .skill-group { margin-bottom: 14px; }
+    .skill-group-name {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 5px;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .tag {
+      font-size: 11px;
+      background: #eeecea;
+      color: #444;
+      padding: 2px 8px;
+      border-radius: 2px;
+      font-family: 'Georgia', serif;
+    }
+
+    .lang-item {
+      font-size: 12.5px;
+      margin-bottom: 5px;
+      color: #444;
+      display: flex;
+      justify-content: space-between;
+    }
+    .lang-level { color: #999; font-size: 11px; }
+
+    /* ── MAIN ── */
+    .main {
+      padding: 32px 36px;
+    }
+
+    .main-section { margin-bottom: 32px; }
+    .main-section:last-child { margin-bottom: 0; }
+
+    .main h2 {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #aaa;
+      font-weight: normal;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .job { margin-bottom: 24px; }
+    .job:last-child { margin-bottom: 0; }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+    .job-title { font-size: 15px; font-weight: bold; }
+    .job-date { font-size: 12px; color: #999; white-space: nowrap; margin-left: 12px; }
+    .job-company { font-size: 12px; color: #777; margin-bottom: 8px; font-style: italic; }
+
+    ul {
+      padding-left: 16px;
+      margin-top: 6px;
+    }
+    li {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    li::marker { color: #bbb; }
+
+    .edu-item { margin-bottom: 14px; }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-name { font-size: 14px; font-weight: bold; }
+    .edu-detail { font-size: 12.5px; color: #666; margin-top: 2px; }
+
+    .pub-item { margin-bottom: 8px; font-size: 13px; color: #333; line-height: 1.5; }
+    .pub-item a { color: #3a3a3a; }
+    .pub-item strong { font-weight: bold; }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .page { box-shadow: none; max-width: 100%; }
+    }
+
+    @media (max-width: 640px) {
+      .page { grid-template-columns: 1fr; }
+      .header { flex-direction: column; gap: 16px; }
+      .header-summary { border-left: none; padding-left: 0; border-top: 1px solid #e0ddd6; padding-top: 16px; }
+      .sidebar { border-right: none; border-bottom: 1px solid #e8e6e0; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-name">
+      <h1>Aigul Rakhmetova</h1>
+      <div class="title">BI Engineer &middot; Reporting Automation</div>
+    </div>
+    <div class="header-summary">
+      BI Engineer with 3+ years of experience building automated reporting infrastructure, data quality processes, and self-serve analytics tooling. At Avito, own end-to-end delivery of the company's primary financial report (600–900 monthly readers, C-level audience) and built alert navigation, metric ownership, and incident analysis systems from scratch. Write custom ECharts visualizations in HTML/CSS/JS. Active contributor to the data analytics community.
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-section">
+      <h2>Contact</h2>
+      <div class="contact-item"><a href="https://www.linkedin.com/in/arakhmetova/">linkedin.com/in/arakhmetova</a></div>
+      <div class="contact-item">Telegram: @arakhmetova</div>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Skills</h2>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Databases</div>
+        <div class="skill-tags">
+          <span class="tag">Trino</span>
+          <span class="tag">ClickHouse</span>
+          <span class="tag">Vertica</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">BI &amp; Visualization</div>
+        <div class="skill-tags">
+          <span class="tag">Redash</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">DataLens</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Frontend / Charts</div>
+        <div class="skill-tags">
+          <span class="tag">ECharts</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Data Engineering</div>
+        <div class="skill-tags">
+          <span class="tag">pgeon (ETL)</span>
+          <span class="tag">DDS modeling</span>
+          <span class="tag">data marts</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Programming</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">pandas</span>
+          <span class="tag">matplotlib</span>
+          <span class="tag">R</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Research</div>
+        <div class="skill-tags">
+          <span class="tag">Qualitative research</span>
+          <span class="tag">CastDev</span>
+          <span class="tag">User interviews</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Languages</h2>
+      <div class="lang-item">English <span class="lang-level">C1</span></div>
+      <div class="lang-item">German <span class="lang-level">B1</span></div>
+      <div class="lang-item">Turkish <span class="lang-level">B1</span></div>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Education</h2>
+      <div class="edu-item">
+        <div class="edu-name">HSE University</div>
+        <div class="edu-detail">BSc Sociology &amp; Social Informatics<br>St. Petersburg · 2020–2024<br>taught in English</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-name">Boğaziçi University</div>
+        <div class="edu-detail">Exchange Programme · 1 year<br>Istanbul, Turkey<br>Sociology, Anthropology, Management</div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="main-section">
+      <h2>Experience</h2>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Avito — BI Engineer</span>
+          <span class="job-date">Aug 2024 – Present</span>
+        </div>
+        <div class="job-company">Russia's largest classifieds marketplace (~12 000 employees) · Central BI team</div>
+        <ul>
+          <li>Owned the company's primary financial report — daily target-vs-actual across all business verticals, read by 600–900 people monthly including C-level and heads of product directions</li>
+          <li>Built metric ownership system from scratch — automated assignment of metric owners company-wide, auto-reassignment on employee departure; designed onboarding flow for new metrics and anomaly resolution protocols</li>
+          <li>Developed alert navigator — consolidates all active data incidents into a single structured summary, eliminating manual monitoring across 4+ channels; reduced on-call overhead by ~5 hours per shift; integrated with data quality team service</li>
+          <li>Built subscription-based factor analysis bot — users subscribe to custom data slices; bot stores preferences in DB and delivers automated factor analysis with PNG charts and incident summaries via Mattermost DM; reduced report staleness from 1 hour to 10 minutes</li>
+          <li>Built LDAP–Mattermost sync service — automated synchronization of LDAP groups with private channels, significantly reducing support load</li>
+          <li>Built ETL pipelines for Redash core metadata datamarts; designed DDS-layer models and production data marts across millions of rows</li>
+          <li>Developed 5+ cross-functional dashboards with charts, queries, and custom ECharts visualizations (HTML/CSS/JS)</li>
+          <li>Created BI Visual Glossary — Redash-based component library with Confluence docs; 100–300 monthly views, adopted as the standard for BI/AI style across domains</li>
+          <li>Designed and recorded internal BI course "Prototyping of Dashboards from Scratch" as author and instructor; being prepared for external publication</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">101.internet — Product Analyst</span>
+          <span class="job-date">Jan 2023 – Jun 2024</span>
+        </div>
+        <div class="job-company">Telecom company · 70-person team · Remote</div>
+        <ul>
+          <li>Conducted qualitative research (user interviews, CastDev sessions) with financial angels sourced via LinkedIn to understand investment decision-making patterns</li>
+          <li>Contributed to building an internal analytical product helping financial angels assess investment opportunities faster</li>
+          <li>Stack: DataLens, Microsoft Office, qualitative research methods</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Ilim Group — BI Analyst</span>
+          <span class="job-date">Summer 2023 – Summer 2024</span>
+        </div>
+        <div class="job-company">One of Russia's largest pulp and timber holding companies · Project engagement</div>
+        <ul>
+          <li>Built automated reporting across all product lines (pulp, sawlog, import/export, other materials) for cross-functional teams</li>
+          <li>Stack: Tableau, SQL, Excel</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-section">
+      <h2>Publications &amp; Talks</h2>
+      <div class="pub-item"><strong>YouTube</strong> · <a href="https://www.youtube.com/watch?si=TCBV1gbkX-LGNQ2x&v=blXJZh3AXNM&feature=youtu.be">How to properly analyze dashboard usage</a> — produced under Avito Product Hub</div>
+      <div class="pub-item"><strong>Kommunalka analitikov</strong> — posts on "Metrics as a Social Construct" and "Simpson's Paradox"</div>
+      <div class="pub-item"><strong>Avito Data Tech</strong> — post covering an internal BI project</div>
+    </div>
+
+  </main>
+
+</div>
+</body>
+</html>
