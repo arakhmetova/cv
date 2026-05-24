@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Айгуль Рахметова — BI-разработчик</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #f5f4f0;
+      color: #1a1a1a;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #fff;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      grid-template-rows: auto 1fr;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+    }
+
+    .header {
+      grid-column: 1 / -1;
+      padding: 40px 40px 32px;
+      border-bottom: 1px solid #e8e6e0;
+      display: flex;
+      align-items: flex-end;
+      gap: 32px;
+    }
+    .header-name h1 {
+      font-size: 32px;
+      font-weight: normal;
+      letter-spacing: 0.5px;
+      line-height: 1.1;
+    }
+    .header-name .title {
+      font-size: 14px;
+      color: #777;
+      margin-top: 6px;
+      font-style: italic;
+      letter-spacing: 0.3px;
+    }
+    .header-summary {
+      flex: 1;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #444;
+      border-left: 1px solid #e0ddd6;
+      padding-left: 32px;
+    }
+
+    .sidebar {
+      padding: 32px 28px;
+      background: #faf9f6;
+      border-right: 1px solid #e8e6e0;
+    }
+
+    .sidebar-section { margin-bottom: 28px; }
+    .sidebar-section:last-child { margin-bottom: 0; }
+
+    .sidebar h2 {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #aaa;
+      font-weight: normal;
+      margin-bottom: 12px;
+    }
+
+    .contact-item {
+      font-size: 12.5px;
+      margin-bottom: 7px;
+      color: #444;
+      line-height: 1.4;
+    }
+    .contact-item a {
+      color: #3a3a3a;
+      text-decoration: none;
+      border-bottom: 1px solid #ccc;
+    }
+    .contact-item a:hover { border-color: #666; }
+
+    .skill-group { margin-bottom: 14px; }
+    .skill-group-name {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 5px;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .tag {
+      font-size: 11px;
+      background: #eeecea;
+      color: #444;
+      padding: 2px 8px;
+      border-radius: 2px;
+      font-family: 'Georgia', serif;
+    }
+
+    .lang-item {
+      font-size: 12.5px;
+      margin-bottom: 5px;
+      color: #444;
+      display: flex;
+      justify-content: space-between;
+    }
+    .lang-level { color: #999; font-size: 11px; }
+
+    .main { padding: 32px 36px; }
+
+    .main-section { margin-bottom: 32px; }
+    .main-section:last-child { margin-bottom: 0; }
+
+    .main h2 {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #aaa;
+      font-weight: normal;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .job { margin-bottom: 24px; }
+    .job:last-child { margin-bottom: 0; }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+    .job-title { font-size: 15px; font-weight: bold; }
+    .job-date { font-size: 12px; color: #999; white-space: nowrap; margin-left: 12px; }
+    .job-company { font-size: 12px; color: #777; margin-bottom: 8px; font-style: italic; }
+
+    ul { padding-left: 16px; margin-top: 6px; }
+    li {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    li::marker { color: #bbb; }
+
+    .edu-item { margin-bottom: 14px; }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-name { font-size: 14px; font-weight: bold; }
+    .edu-detail { font-size: 12.5px; color: #666; margin-top: 2px; }
+
+    .pub-item { margin-bottom: 8px; font-size: 13px; color: #333; line-height: 1.5; }
+    .pub-item a { color: #3a3a3a; }
+    .pub-item strong { font-weight: bold; }
+
+    .lang-switcher {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 12px;
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 6px 14px;
+      border-radius: 2px;
+      text-decoration: none;
+      color: #555;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .lang-switcher:hover { color: #1a1a1a; border-color: #aaa; }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .page { box-shadow: none; max-width: 100%; }
+      .lang-switcher { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .page { grid-template-columns: 1fr; }
+      .header { flex-direction: column; gap: 16px; }
+      .header-summary { border-left: none; padding-left: 0; border-top: 1px solid #e0ddd6; padding-top: 16px; }
+      .sidebar { border-right: none; border-bottom: 1px solid #e8e6e0; }
+    }
+  </style>
+</head>
+<body>
+
+<a class="lang-switcher" href="index.html">EN</a>
+
+<div class="page">
+
+  <header class="header">
+    <div class="header-name">
+      <h1>Айгуль Рахметова</h1>
+      <div class="title">BI-разработчик &middot; Автоматизация отчётности</div>
+    </div>
+    <div class="header-summary">
+      BI-разработчик с опытом 3+ года — строю автоматизированную инфраструктуру отчётности, процессы качества данных и инструменты самообслуживания для аналитиков. В Авито отвечаю за главный финансовый отчёт компании (600–900 читателей в месяц, аудитория C-level), с нуля выстроила системы навигации по алертам, оунерства метрик и анализа инцидентов. Пишу кастомные визуализации на ECharts (HTML/CSS/JS). Активный участник аналитического комьюнити.
+    </div>
+  </header>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-section">
+      <h2>Контакты</h2>
+      <div class="contact-item"><a href="https://www.linkedin.com/in/arakhmetova/">linkedin.com/in/arakhmetova</a></div>
+      <div class="contact-item">Telegram: @arakhmetova</div>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Навыки</h2>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Базы данных</div>
+        <div class="skill-tags">
+          <span class="tag">Trino</span>
+          <span class="tag">ClickHouse</span>
+          <span class="tag">Vertica</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">BI и визуализация</div>
+        <div class="skill-tags">
+          <span class="tag">Redash</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">DataLens</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Frontend / графики</div>
+        <div class="skill-tags">
+          <span class="tag">ECharts</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Инженерия данных</div>
+        <div class="skill-tags">
+          <span class="tag">pgeon (ETL)</span>
+          <span class="tag">DDS-моделирование</span>
+          <span class="tag">витрины</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Программирование</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">pandas</span>
+          <span class="tag">matplotlib</span>
+          <span class="tag">R</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Исследования</div>
+        <div class="skill-tags">
+          <span class="tag">Качественные методы</span>
+          <span class="tag">CastDev</span>
+          <span class="tag">Интервью</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Языки</h2>
+      <div class="lang-item">Английский <span class="lang-level">C1</span></div>
+      <div class="lang-item">Немецкий <span class="lang-level">B1</span></div>
+      <div class="lang-item">Турецкий <span class="lang-level">B1</span></div>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Образование</h2>
+      <div class="edu-item">
+        <div class="edu-name">НИУ ВШЭ</div>
+        <div class="edu-detail">Социология и социальная информатика<br>Санкт-Петербург · 2020–2024<br>обучение на английском языке</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-name">Университет Богазичи</div>
+        <div class="edu-detail">Академический обмен · 1 год<br>Стамбул, Турция<br>Социология, антропология, менеджмент</div>
+      </div>
+    </div>
+
+  </aside>
+
+  <main class="main">
+
+    <div class="main-section">
+      <h2>Опыт</h2>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Авито — BI-разработчик</span>
+          <span class="job-date">Авг 2024 — н.в.</span>
+        </div>
+        <div class="job-company">Крупнейший классифайд-маркетплейс России (~12 000 сотрудников) · Центральная BI-команда</div>
+        <ul>
+          <li>Веду главный финансовый отчёт компании — ежедневное сравнение таргета с фактом по всем бизнес-вертикалям; 600–900 читателей в месяц, включая C-level и руководителей направлений</li>
+          <li>Построила с нуля систему оунерства метрик — автоматическое назначение ответственных по всей компании, автопереназначение при увольнении; процесс заведения новых метрик и протоколы разрешения аномалий</li>
+          <li>Разработала алертный навигатор — скрипт консолидирует все активные инциденты в единое саммери, устраняя необходимость мониторить 4+ канала вручную; экономия ~5 часов на смену дежурного; интегрирован с сервисом команды качества данных</li>
+          <li>Построила бота по подписке на факторный анализ — пользователи подписываются на нужные разрезы, бот хранит настройки в БД и доставляет факторный анализ с PNG и саммери в личку; снизила время устаревания отчёта с 1 часа до 10 минут</li>
+          <li>Разработала сервис синхронизации LDAP–Mattermost — автоматическая синхронизация групп с закрытыми каналами, значительно сократила нагрузку на поддержку</li>
+          <li>Построила ETL-пайплайны для метадатамартов Redash; спроектировала модели DDS-слоя и продовые витрины; работа с метаданными — миллионы строк</li>
+          <li>Разработала 5+ кросс-функциональных дашбордов с чартами, запросами и кастомными визуализациями ECharts (HTML/CSS/JS)</li>
+          <li>Создала визуальный словарь BI — библиотека визуальных компонентов в Redash с документацией в Confluence; 100–300 просмотров в месяц, стандарт BI/AI-стиля в доменах</li>
+          <li>Разработала и записала внутренний BI-курс «Прототипирование дашбордов с нуля» как автор и преподаватель; готовится к публикации на внешний рынок</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">101.internet — Продуктовый аналитик</span>
+          <span class="job-date">Янв 2023 — Июн 2024</span>
+        </div>
+        <div class="job-company">Телеком-компания · команда 70 человек · Удалённо</div>
+        <ul>
+          <li>Проводила качественные исследования (интервью, CastDev) с финансовыми ангелами через LinkedIn для понимания процесса принятия инвестиционных решений</li>
+          <li>Участвовала в создании аналитического продукта, помогающего финансовым ангелам быстрее оценивать инвестиционные возможности</li>
+          <li>Стек: DataLens, Microsoft Office, качественные методы исследования</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Илим — BI-аналитик</span>
+          <span class="job-date">Лето 2023 — Лето 2024</span>
+        </div>
+        <div class="job-company">Один из крупнейших лесопромышленных холдингов России · Проектная занятость</div>
+        <ul>
+          <li>Построила автоматизированную отчётность по всем продуктам (целлюлоза, пиловочник, импорт-экспорт, прочие материалы) для кросс-функциональных команд</li>
+          <li>Стек: Tableau, SQL, Excel</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-section">
+      <h2>Публикации и выступления</h2>
+      <div class="pub-item"><strong>YouTube</strong> · <a href="https://www.youtube.com/watch?si=TCBV1gbkX-LGNQ2x&v=blXJZh3AXNM&feature=youtu.be">Как правильно анализировать используемость дашбордов</a> — в рамках Avito Product Hub</div>
+      <div class="pub-item"><strong>Коммуналка аналитиков</strong> — посты «Метрика как социальный конструкт» и «Парадокс Симпсона»</div>
+      <div class="pub-item"><strong>Avito Data Tech</strong> — пост о внутреннем BI-проекте</div>
+    </div>
+
+  </main>
+
+</div>
+</body>
+</html>
