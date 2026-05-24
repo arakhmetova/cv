@@ -17,6 +17,24 @@
       --border: #e5e7eb;
       --bg: #f9fafb;
       --sidebar-bg: #f3f4f6;
+      --page-bg: #fff;
+      --tag-bg: #fff;
+      --summary-color: #374151;
+      --li-color: #374151;
+    }
+
+    [data-theme="dark"] {
+      --indigo: #818cf8;
+      --indigo-light: #1e1b4b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: #334155;
+      --bg: #0f172a;
+      --sidebar-bg: #1e293b;
+      --page-bg: #1a2535;
+      --tag-bg: #273549;
+      --summary-color: #cbd5e1;
+      --li-color: #cbd5e1;
     }
 
     body {
@@ -32,7 +50,7 @@
     .page {
       max-width: 980px;
       margin: 0 auto;
-      background: #fff;
+      background: var(--page-bg);
       border: 1px solid var(--border);
       border-radius: 8px;
       overflow: hidden;
@@ -50,6 +68,8 @@
       margin-bottom: 4px;
     }
     .header h1 { font-size: 30px; font-weight: 600; letter-spacing: -0.5px; }
+    .header-controls { display: flex; gap: 8px; align-items: center; }
+
     .lang-switch {
       font-size: 12px;
       font-weight: 500;
@@ -58,8 +78,22 @@
       border: 1px solid var(--indigo);
       padding: 4px 12px;
       border-radius: 4px;
+      background: transparent;
     }
     .lang-switch:hover { background: var(--indigo-light); }
+
+    .theme-toggle {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--indigo);
+      border: 1px solid var(--indigo);
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: transparent;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .theme-toggle:hover { background: var(--indigo-light); }
     .header-role {
       font-size: 12px;
       font-weight: 500;
@@ -74,7 +108,7 @@
     .header-summary {
       font-size: 13.5px;
       line-height: 1.7;
-      color: #374151;
+      color: var(--summary-color);
       padding-top: 16px;
       border-top: 1px solid var(--border);
     }
@@ -114,8 +148,8 @@
     .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
     .tag {
       font-size: 12px;
-      background: #fff;
-      color: #374151;
+      background: var(--tag-bg);
+      color: var(--summary-color);
       border: 1px solid var(--border);
       padding: 3px 9px;
       border-radius: 4px;
@@ -168,11 +202,11 @@
     .job-company { font-size: 12px; color: var(--muted); margin-bottom: 8px; margin-top: 2px; }
 
     ul { padding-left: 14px; }
-    li { font-size: 12.5px; line-height: 1.6; color: #374151; margin-bottom: 4px; }
+    li { font-size: 12.5px; line-height: 1.6; color: var(--li-color); margin-bottom: 4px; }
     li::marker { color: var(--indigo); }
     li strong { color: var(--text); font-weight: 600; }
 
-    .pub-item { font-size: 13px; color: #374151; margin-bottom: 6px; line-height: 1.5; }
+    .pub-item { font-size: 13px; color: var(--li-color); margin-bottom: 6px; line-height: 1.5; }
     .pub-item a { color: var(--indigo); text-decoration: none; }
     .pub-item a:hover { text-decoration: underline; }
 
@@ -204,7 +238,10 @@
   <header class="header">
     <div class="header-top">
       <h1>Айгуль Ахметова</h1>
-      <a class="lang-switch" href="index.html">EN</a>
+      <div class="header-controls">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Переключить тему">☀</button>
+        <a class="lang-switch" href="index.html">EN</a>
+      </div>
     </div>
     <div class="header-role">BI-разработчик &middot; Автоматизация отчётности</div>
     <div class="header-contacts">
@@ -350,6 +387,26 @@
     </main>
   </div>
 </div>
+<script>
+(function() {
+  var btn = document.getElementById('theme-toggle');
+  var html = document.documentElement;
+  var stored = localStorage.getItem('cv-theme');
+  if (stored === 'dark') { html.setAttribute('data-theme', 'dark'); btn.textContent = '☾'; }
+
+  btn.addEventListener('click', function() {
+    if (html.getAttribute('data-theme') === 'dark') {
+      html.removeAttribute('data-theme');
+      localStorage.setItem('cv-theme', 'light');
+      btn.textContent = '☀';
+    } else {
+      html.setAttribute('data-theme', 'dark');
+      localStorage.setItem('cv-theme', 'dark');
+      btn.textContent = '☾';
+    }
+  });
+})();
+</script>
 <script>
 (function() {
   var canvas = document.getElementById('particles-canvas');
